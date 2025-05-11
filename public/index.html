@@ -241,11 +241,10 @@
         }
 
         /* Layout principal em grid */
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
+         .main-content {
+            display: flex;
+            flex-direction: column;
             gap: var(--space-xl);
-            margin-bottom: var(--space-xl);
         }
 
         @media (max-width: 900px) {
@@ -256,13 +255,8 @@
 
         /* Painel de recursos moderno */
         .resources-panel {
-            background: var(--background-secondary);
-            border-radius: var(--border-radius-lg);
-            padding: var(--space-md);
-            box-shadow: var(--shadow-sm);
-            height: fit-content;
-            position: sticky;
-            top: var(--space-md);
+            position: static; /* Remove o sticky */
+            margin-bottom: var(--space-md);
         }
 
         .resources-tabs {
@@ -318,9 +312,7 @@
 
         /* Chat moderno */
         .chat-container {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-md);
+            order: 2; /* Garante que o chat fique abaixo */
         }
 
         .chat-window {
@@ -779,7 +771,7 @@
         </main>
 
         <footer class="footer">
-            <p>Ruah - Orientação e Sabedoria Espiritual © 2023</p>
+            <p>Ruah - Orientação e Sabedoria Espiritual © 2025</p>
         </footer>
     </div>
 
