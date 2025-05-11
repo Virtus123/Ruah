@@ -11,229 +11,647 @@
     <link rel="icon" href="./favicon-32x32.ico" type="image/x-icon">
     <link rel="shortcut icon" href="./favicon-32x32.ico" type="image/x-icon">
     <style>
+        /* Variáveis CSS modernas */
+        :root {
+            /* Espaçamento */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-xxl: 3rem;
+            
+            /* Tipografia */
+            --font-size-sm: 0.875rem;
+            --font-size-md: 1rem;
+            --font-size-lg: 1.25rem;
+            --font-size-xl: 1.5rem;
+            --font-size-xxl: 2rem;
+            
+            /* Bordas */
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --border-radius-lg: 12px;
+            --border-radius-circle: 50%;
+            
+            /* Sombras */
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --shadow-inset: inset 0 2px 4px rgba(0,0,0,0.05);
+            
+            /* Transições */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
         /* Temas */
         .theme-dark {
             /* Fundo e texto */
-            --background: #141a2b;
-            /* Azul celestial profundo */
-            --text: #F0F8FF;
-            /* Branco azulado celestial */
-            --text-secondary: rgba(200, 220, 255, 0.8);
-            /* Azul claro suave */
+            --background: #0f172a;
+            --background-secondary: #1e293b;
+            --text: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-tertiary: #64748b;
 
-            /* Cores primárias (destaques) */
-            --primary: #5D8AA8;
-            /* Azul celestial moderado */
-            --primary-hover: #7EB6FF;
-            /* Azul céu claro */
-            --primary-active: #3A5FCD;
-            /* Azul mais intenso */
+            /* Cores primárias */
+            --primary: #7c3aed;
+            --primary-hover: #8b5cf6;
+            --primary-active: #6d28d9;
+            --primary-light: rgba(124, 58, 237, 0.1);
 
-            /* Cores secundárias */
-            --secondary: #1A2F5B;
-            /* Azul noite */
-            --secondary-dark: #0A1229;
-            /* Azul quase negro */
+            /* Cores de destaque */
+            --accent: #06b6d4;
+            --accent-hover: #22d3ee;
+            --accent-active: #0891b2;
+            --accent-light: rgba(6, 182, 212, 0.1);
+
+            /* Estados */
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
         }
 
         .theme-light {
             /* Fundo e texto */
-            --background: #FFF8E7;
-            /* Branco dourado suave */
-            --text: #4A4A4A;
-            /* Texto escuro */
-            --text-secondary: rgba(74, 74, 74, 0.8);
-            /* Texto secundário */
+            --background: #ffffff;
+            --background-secondary: #f8fafc;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --text-tertiary: #94a3b8;
 
             /* Cores primárias */
-            --primary: #D4AF37;
-            /* Dourado */
-            --primary-hover: #FFD700;
-            /* Dourado brilhante */
-            --primary-active: #B8860B;
-            /* Dourado escuro */
+            --primary: #7c3aed;
+            --primary-hover: #8b5cf6;
+            --primary-active: #6d28d9;
+            --primary-light: rgba(124, 58, 237, 0.1);
 
-            /* Cores secundárias */
-            --secondary: #F5DEB3;
-            /* Bege dourado */
-            --secondary-dark: #DEB887;
-            /* Marrom dourado */
+            /* Cores de destaque */
+            --accent: #06b6d4;
+            --accent-hover: #22d3ee;
+            --accent-active: #0891b2;
+            --accent-light: rgba(6, 182, 212, 0.1);
+
+            /* Estados */
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
         }
 
         .theme-catholic {
-            --background: linear-gradient(135deg, #722F37 0%, #2C1810 100%);
-            --text: #F0F8FF;
-            --text-secondary: rgba(240, 248, 255, 0.8);
-            --primary: #9B2335;
-            --primary-hover: #C41E3A;
+            /* Fundo e texto */
+            --background: linear-gradient(135deg, #2c1810 0%, #722f37 100%);
+            --background-secondary: #4a1d1f;
+            --text: #f8fafc;
+            --text-secondary: #e2e8f0;
+            --text-tertiary: #cbd5e1;
+
+            /* Cores primárias */
+            --primary: #9b2335;
+            --primary-hover: #c41e3a;
             --primary-active: #800000;
-            --secondary: #4A1D1F;
-            --secondary-dark: #2C1810;
+            --primary-light: rgba(155, 35, 53, 0.1);
+
+            /* Cores de destaque */
+            --accent: #d4af37;
+            --accent-hover: #f5d042;
+            --accent-active: #b8860b;
+            --accent-light: rgba(212, 175, 55, 0.1);
         }
 
         .theme-protestant {
-            --background: linear-gradient(135deg, #1B4D3E 0%, #0B2B26 100%);
-            --text: #F0F8FF;
-            --text-secondary: rgba(240, 248, 255, 0.8);
-            --primary: #2E8B57;
-            --primary-hover: #3CB371;
+            /* Fundo e texto */
+            --background: linear-gradient(135deg, #0b2b26 0%, #1b4d3e 100%);
+            --background-secondary: #134e4a;
+            --text: #f8fafc;
+            --text-secondary: #e2e8f0;
+            --text-tertiary: #cbd5e1;
+
+            /* Cores primárias */
+            --primary: #2e8b57;
+            --primary-hover: #3cb371;
             --primary-active: #006400;
-            --secondary: #1B4D3E;
-            --secondary-dark: #0B2B26;
+            --primary-light: rgba(46, 139, 87, 0.1);
+
+            /* Cores de destaque */
+            --accent: #06b6d4;
+            --accent-hover: #22d3ee;
+            --accent-active: #0891b2;
+            --accent-light: rgba(6, 182, 212, 0.1);
         }
 
-        :root {
-
-            /* Elementos de UI */
-            --message-bg: rgba(93, 138, 168, 0.2);
-            /* Azul celestial translúcido */
-            --input-bg: rgba(126, 182, 255, 0.1);
-            /* Azul céu muito suave */
-
-            /* Cores de ênfase espiritual */
-            --divine-light: #FFD700;
-            /* Dourado - glória divina */
-            --holy-spirit: #9370DB;
-            /* Roxo - espírito santo */
-            --angelic: #E6F0FF;
-            /* Azul angelical */
-
-            /* Constantes de design */
-            --border-radius: 8px;
-            --transition: all 0.3s ease;
-        }
-
+        /* Reset e estilos base */
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--background);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--background);
             color: var(--text);
             min-height: 100vh;
-            line-height: 1.6;
-            background-image: linear-gradient(to bottom, var(--background), #1A2F5B);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* Layout moderno */
+        .app-container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        /* Cabeçalho moderno */
         .navbar {
-            background-color: var(--secondary);
-            padding: 1.5rem 1rem;
+            padding: var(--space-lg) 0;
             text-align: center;
-            font-style: italic;
-            border-bottom: 1px solid var(--divine-light);
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
-            background-image: linear-gradient(to right, var(--secondary), var(--secondary-dark));
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
+            gap: var(--space-md);
+            background: var(--background-secondary);
+            border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+            margin-bottom: var(--space-xl);
+            box-shadow: var(--shadow-md);
         }
 
         .theme-selector {
             position: absolute;
-            right: 1rem;
-            top: 1rem;
+            right: var(--space-md);
+            top: var(--space-md);
             display: flex;
-            gap: 0.5rem;
+            gap: var(--space-sm);
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--space-sm);
+            border-radius: var(--border-radius-lg);
+            backdrop-filter: blur(10px);
         }
 
         .theme-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: none;
             border: none;
             color: var(--text);
-            padding: 0.5rem;
+            border-radius: var(--border-radius-circle);
             cursor: pointer;
-            transition: transform 0.3s ease;
-            font-size: 1.2rem;
+            transition: var(--transition-normal);
+            font-size: var(--font-size-md);
         }
 
         .theme-btn:hover {
-            transform: scale(1.2);
-            color: var(--divine-light);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
         .theme-btn.active {
-            color: var(--divine-light);
-            text-shadow: 0 0 10px var(--divine-light);
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 0 0 2px var(--primary-hover);
+        }
+
+        .verse {
+            font-size: var(--font-size-lg);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+            color: var(--accent);
+            font-style: italic;
+            text-align: center;
+            line-height: 1.6;
         }
 
         .sacred-symbols {
             display: flex;
-            gap: 2rem;
-            color: var(--divine-light);
+            gap: var(--space-lg);
+            color: var(--accent);
             opacity: 0.7;
-            font-size: 1.2rem;
+            font-size: var(--font-size-lg);
+            margin-top: var(--space-md);
         }
 
-        /* Efeito de vitral */
-        .navbar::before {
+        /* Layout principal em grid */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Painel de recursos moderno */
+        .resources-panel {
+            background: var(--background-secondary);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-md);
+            box-shadow: var(--shadow-sm);
+            height: fit-content;
+            position: sticky;
+            top: var(--space-md);
+        }
+
+        .resources-tabs {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: var(--space-sm);
+        }
+
+        .tab-btn {
+            padding: var(--space-sm) var(--space-md);
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .tab-btn.active::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: calc(-1 * var(--space-sm) - 1px);
             left: 0;
             right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg,
-                    rgba(255, 255, 255, 0.1) 25%,
-                    transparent 25%,
-                    transparent 50%,
-                    rgba(255, 255, 255, 0.1) 50%,
-                    rgba(255, 255, 255, 0.1) 75%,
-                    transparent 75%,
-                    transparent);
-            background-size: 100px 100px;
-            opacity: 0.1;
-            pointer-events: none;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px;
         }
 
-        .verse {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0.5rem 1rem;
-            color: var(--divine-light);
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+        .tab-content {
+            display: none;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        .tab-content.active {
+            display: block;
+            animation: fadeIn var(--transition-normal) forwards;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Chat moderno */
         .chat-container {
-            background-color: rgba(10, 18, 41, 0.7);
-            border-radius: var(--border-radius);
-            padding: 1rem;
-            margin-bottom: 2rem;
-            min-height: 300px;
-            max-height: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .chat-window {
+            background: var(--background-secondary);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-md);
+            height: 500px;
             overflow-y: auto;
-            scroll-behavior: smooth;
-            box-shadow:
-                inset 0 0 10px rgba(0, 0, 0, 0.3),
-                0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(93, 138, 168, 0.3);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            box-shadow: var(--shadow-inset);
         }
 
         .message {
-            margin-bottom: 1rem;
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            background-color: var(--message-bg);
+            padding: var(--space-md);
+            border-radius: var(--border-radius-md);
+            max-width: 80%;
+            position: relative;
             opacity: 0;
-            animation: fadeIn 0.3s ease forwards;
-            word-wrap: break-word;
+            animation: fadeIn var(--transition-normal) forwards;
+            line-height: 1.6;
+        }
+
+        .question {
+            align-self: flex-end;
+            background: var(--primary);
+            color: white;
+            border-bottom-right-radius: 0;
+            margin-right: var(--space-md);
+        }
+
+        .answer {
+            align-self: flex-start;
+            background: var(--background);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom-left-radius: 0;
+            margin-left: var(--space-md);
+        }
+
+        .message-time {
+            font-size: var(--font-size-sm);
+            color: var(--text-tertiary);
+            margin-top: var(--space-xs);
+            text-align: right;
+        }
+
+        /* Input moderno */
+        .input-container {
+            display: flex;
+            gap: var(--space-md);
+            background: var(--background-secondary);
+            padding: var(--space-md);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        input {
+            flex: 1;
+            padding: var(--space-md);
+            border: none;
+            border-radius: var(--border-radius-md);
+            background: var(--background);
+            color: var(--text);
+            font-size: var(--font-size-md);
+            transition: var(--transition-fast);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary-light);
+        }
+
+        input::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        button {
+            padding: var(--space-md) var(--space-lg);
+            border: none;
+            border-radius: var(--border-radius-md);
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        button:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            background: var(--primary-active);
+            transform: translateY(0);
+        }
+
+        .loading {
+            text-align: center;
+            color: var(--accent);
+            padding: var(--space-md);
+            display: none;
+            font-style: italic;
+        }
+
+        /* Estilos para o painel de recursos */
+        .search-container {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+
+        .theme-select {
+            flex: 1;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--border-radius-md);
+            background: var(--background);
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: var(--font-size-sm);
+        }
+
+        .search-btn {
+            padding: var(--space-sm) var(--space-md);
+        }
+
+        .verses-results {
+            display: grid;
+            gap: var(--space-md);
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: var(--space-sm);
+        }
+
+        .verse-card {
+            background: var(--background);
+            padding: var(--space-md);
+            border-radius: var(--border-radius-md);
             border-left: 3px solid var(--primary);
-        }        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
+            transition: var(--transition-fast);
+        }
+
+        .verse-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .verse-reference {
+            color: var(--primary);
+            font-size: var(--font-size-sm);
+            margin-top: var(--space-sm);
+            display: block;
+            font-style: italic;
+        }
+
+        /* Estilos para orações */
+        .prayers-list {
+            display: grid;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+
+        .prayer-card {
+            background: var(--background);
+            padding: var(--space-md);
+            border-radius: var(--border-radius-md);
+            border-left: 3px solid var(--accent);
+            transition: var(--transition-fast);
+        }
+
+        .prayer-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timer-container {
+            text-align: center;
+            padding: var(--space-md);
+            background: var(--background);
+            border-radius: var(--border-radius-md);
+            margin-top: var(--space-md);
+        }
+
+        #meditationTimer {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--space-md);
+            color: var(--accent);
+            font-family: monospace;
+        }
+
+        /* Estilos para calendário */
+        .calendar-events {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .current-event {
+            background: var(--background);
+            border: 1px solid var(--accent);
+            position: relative;
+            padding: var(--space-md);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+        }
+
+        .event-badge {
+            position: absolute;
+            top: var(--space-sm);
+            right: var(--space-sm);
+            background: var(--accent);
+            color: var(--background);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--border-radius-sm);
+            font-size: var(--font-size-sm);
+            font-weight: bold;
+        }
+
+        .event-card {
+            background: var(--background);
+            padding: var(--space-md);
+            border-radius: var(--border-radius-md);
+            border-left: 3px solid var(--accent);
+            transition: var(--transition-fast);
+        }
+
+        .event-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .event-date {
+            color: var(--accent);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .event-date::before {
+            content: '\f073';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+        }
+
+        .event-readings {
+            margin-top: var(--space-md);
+            padding-top: var(--space-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .event-readings h4 {
+            color: var(--accent);
+            margin-bottom: var(--space-sm);
+            font-size: var(--font-size-sm);
+        }
+
+        .event-readings ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .event-readings li {
+            padding: var(--space-xs) 0;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: var(--font-size-sm);
+        }
+
+        .event-readings li::before {
+            content: '\f02d';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--accent);
+            font-size: var(--font-size-sm);
+        }
+
+        /* Rodapé */
+        .footer {
+            text-align: center;
+            padding: var(--space-md);
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+            margin-top: var(--space-xl);
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Efeitos especiais */
+        .divine-light {
+            position: fixed;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at center,
+                rgba(6, 182, 212, 0.8) 0%,
+                rgba(6, 182, 212, 0.4) 30%,
+                rgba(6, 182, 212, 0.2) 50%,
+                transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+            animation: divineLight 2s ease-out forwards;
+            filter: blur(20px);
         }
 
         @keyframes divineLight {
@@ -251,476 +669,119 @@
             }
         }
 
-        .divine-light {
-            position: fixed;
-            top: -100px;
-            right: -100px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle at center,
-                rgba(255, 215, 0, 0.8) 0%,
-                rgba(255, 215, 0, 0.4) 30%,
-                rgba(255, 215, 0, 0.2) 50%,
-                transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1000;
-            animation: divineLight 2s ease-out forwards;
-            filter: blur(20px);
-        }
-
-        .question {
-            background-color: rgba(126, 182, 255, 0.25);
-            color: var(--angelic);
-            margin-left: 2rem;
-            border-bottom-right-radius: 0;
-            border-left-color: var(--primary-hover);
-        }
-
-        .answer {
-            margin-right: 2rem;
-            border-top-left-radius: 0;
-            background-color: rgba(26, 47, 91, 0.5);
-            border-left-color: var(--holy-spirit);
-        }
-
-        .input-container {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        input {
-            flex: 1;
-            padding: 1rem;
-            border: none;
-            border-radius: var(--border-radius);
-            background-color: var(--input-bg);
-            color: var(--text);
-            font-size: 1rem;
-            transition: var(--transition);
-            border: 1px solid rgba(93, 138, 168, 0.3);
-        }
-
-        input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(93, 138, 168, 0.3);
-            background-color: rgba(126, 182, 255, 0.15);
-        }
-
-        input::placeholder {
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-
-        button {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: var(--border-radius);
-            background-color: var(--primary);
-            color: white;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 600;
-            white-space: nowrap;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            background-image: linear-gradient(to bottom, var(--primary), var(--secondary));
-        }
-
-        button:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        button:active {
-            background-color: var(--primary-active);
-            transform: translateY(0);
-        }
-
-        .loading {
-            text-align: center;
-            color: var(--divine-light);
-            margin: 1rem 0;
-            display: none;
-            font-style: italic;
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
-        }
-
-        /* Scrollbar styling */
-        .chat-container::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .chat-container::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-
-        .chat-container::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 10px;
-        }
-
-        .chat-container::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-hover);
-        }
-
-        /* Estilos para o painel de recursos */
-        .resources-panel {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: var(--border-radius);
-            padding: 1rem;
-            margin-bottom: 2rem;
-            border: 1px solid var(--primary);
-        }
-
-        .resources-tabs {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .tab-btn {
-            padding: 0.5rem 1rem;
-            background: transparent;
-            border: 1px solid var(--primary);
-            color: var(--text);
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .tab-btn.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        .tab-content {
-            display: none;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: var(--border-radius);
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Estilos para a busca de versículos */
-        .search-container {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .theme-select {
-            flex: 1;
-            padding: 0.5rem;
-            border-radius: var(--border-radius);
-            background: var(--input-bg);
-            color: var(--text);
-            border: 1px solid var(--primary);
-        }
-
-        .search-btn {
-            padding: 0.5rem 1rem;
-        }
-
-        .verses-results {
-            display: grid;
-            gap: 1rem;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        .verse-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            border-left: 3px solid var(--primary);
-        }
-
-        .verse-reference {
-            color: var(--primary);
-            font-style: italic;
-            margin-top: 0.5rem;
-            display: block;
-        }
-
-        /* Estilos para orações */
-        .prayers-list {
-            display: grid;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .prayer-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            border-left: 3px solid var(--holy-spirit);
-        }
-
-        .timer-container {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: var(--border-radius);
-        }
-
-        #meditationTimer {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--divine-light);
-        }
-
-        /* Estilos para calendário */
-        .calendar-events {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .current-event {
-            background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            border: 1px solid var(--divine-light);
-            position: relative;
-            padding: 1.5rem;
-        }
-
-        .event-badge {
-            position: absolute;
-            top: -10px;
-            right: 1rem;
-            background: var(--divine-light);
-            color: var(--secondary-dark);
-            padding: 0.25rem 1rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .event-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            border-left: 3px solid var(--divine-light);
-            transition: transform 0.3s ease;
-        }
-
-        .event-card:hover {
-            transform: translateX(10px);
-        }
-
-        .event-date {
-            color: var(--primary);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .event-date::before {
-            content: '\f073';
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-        }
-
-        .event-readings {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .event-readings h4 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .event-readings ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .event-readings li {
-            padding: 0.25rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .event-readings li::before {
-            content: '\f02d';
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            color: var(--primary);
-        }
-
-        .countdown-card {
-            background: linear-gradient(45deg, var(--primary) 0%, var(--secondary) 100%);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .countdown-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .countdown-days {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--divine-light);
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-
-        .countdown-label {
-            font-size: 1rem;
-            color: var(--text-secondary);
-        }
-
-        .countdown-event {
-            font-size: 1.2rem;
-            color: var(--divine-light);
-            font-weight: bold;
-        }
-
-        .events-timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            position: relative;
-        }
-
-        .events-timeline::before {
-            content: '';
-            position: absolute;
-            left: -20px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom,
-                    var(--primary) 0%,
-                    var(--divine-light) 50%,
-                    var(--primary) 100%);
-        }
-
+        /* Responsividade */
         @media (max-width: 600px) {
+            .navbar {
+                padding: var(--space-md) 0;
+            }
+            
+            .theme-selector {
+                position: static;
+                margin-bottom: var(--space-md);
+            }
+            
+            .verse {
+                font-size: var(--font-size-md);
+            }
+            
             .input-container {
                 flex-direction: column;
             }
-
+            
             button {
                 width: 100%;
-            }
-
-            .verse {
-                font-size: 1rem;
-            }
-
-            .question {
-                margin-left: 1rem;
-            }
-
-            .answer {
-                margin-right: 1rem;
-            }
-
-            .resources-tabs {
-                flex-direction: column;
-            }
-
-            .search-container {
-                flex-direction: column;
             }
         }
     </style>
 </head>
 
 <body>
-    <header class="navbar">
-        <div class="theme-selector">
-            <button class="theme-btn" data-theme="dark" title="Tema Escuro">
-                <i class="fas fa-moon"></i>
-            </button>
-            <button class="theme-btn" data-theme="light" title="Tema Luz">
-                <i class="fas fa-sun"></i>
-            </button>
-            <button class="theme-btn" data-theme="catholic" title="Tema Católico">
+    <div class="app-container">
+        <header class="navbar">
+            <div class="theme-selector">
+                <button class="theme-btn active" data-theme="dark" title="Tema Escuro">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="theme-btn" data-theme="light" title="Tema Luz">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="theme-btn" data-theme="catholic" title="Tema Católico">
+                    <i class="fas fa-cross"></i>
+                </button>
+                <button class="theme-btn" data-theme="protestant" title="Tema Protestante">
+                    <i class="fas fa-church"></i>
+                </button>
+            </div>
+            <div class="verse" id="verse">Carregando versículo...</div>
+            <div class="sacred-symbols">
+                <i class="fas fa-dove"></i>
                 <i class="fas fa-cross"></i>
-            </button>
-            <button class="theme-btn" data-theme="protestant" title="Tema Protestante">
-                <i class="fas fa-church"></i>
-            </button>
-        </div>
-        <div class="verse" id="verse">Carregando versículo...</div>
-        <div class="sacred-symbols">
-            <i class="fas fa-dove"></i>
-            <i class="fas fa-cross"></i>
-            <i class="fas fa-bible"></i>
-        </div>
-    </header>
-    <main class="container">
-        <div class="resources-panel" id="resourcesPanel">
-            <div class="resources-tabs">
-                <button class="tab-btn active" data-tab="verses">Versículos</button>
-                <button class="tab-btn" data-tab="prayers">Orações</button>
-                <button class="tab-btn" data-tab="calendar">Calendário</button>
+                <i class="fas fa-bible"></i>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="resources-panel" id="resourcesPanel">
+                <div class="resources-tabs">
+                    <button class="tab-btn active" data-tab="verses">Versículos</button>
+                    <button class="tab-btn" data-tab="prayers">Orações</button>
+                    <button class="tab-btn" data-tab="calendar">Calendário</button>
+                </div>
+
+                <div class="tab-content active" id="versesTab">
+                    <div class="search-container">
+                        <select id="verseTheme" class="theme-select">
+                            <option value="">Selecione um tema...</option>
+                            <!-- Temas serão adicionados via JavaScript -->
+                        </select>
+                        <button onclick="searchVerses()" class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="verses-results" id="versesResults"></div>
+                </div>
+
+                <div class="tab-content" id="prayersTab">
+                    <div class="prayers-list" id="prayersList">
+                        <!-- Orações serão adicionadas via JavaScript -->
+                    </div>
+                    <div class="timer-container">
+                        <div id="meditationTimer">00:00</div>
+                        <button onclick="toggleTimer()" id="timerButton">
+                            <i class="fas fa-play"></i> Iniciar Meditação
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="calendarTab">
+                    <div class="calendar-events" id="calendarEvents">
+                        <!-- Eventos serão adicionados via JavaScript -->
+                    </div>
+                </div>
             </div>
 
-            <div class="tab-content active" id="versesTab">
-                <div class="search-container">
-                    <select id="verseTheme" class="theme-select">
-                        <option value="">Selecione um tema...</option>
-                        <!-- Temas serão adicionados via JavaScript -->
-                    </select>
-                    <button onclick="searchVerses()" class="search-btn">
-                        <i class="fas fa-search"></i>
+            <div class="chat-container">
+                <div class="chat-window" id="chat">
+                    <!-- As mensagens serão inseridas aqui -->
+                </div>
+
+                <div class="loading" id="loading">
+                    <i class="fas fa-spinner fa-spin"></i> רוח - Buscando resposta...
+                </div>
+
+                <div class="input-container">
+                    <input type="text" id="question" placeholder="Como posso ajudar?" aria-label="Digite sua pergunta" />
+                    <button onclick="askQuestion()" aria-label="Enviar pergunta">
+                        <i class="fas fa-paper-plane"></i> Enviar
                     </button>
                 </div>
-                <div class="verses-results" id="versesResults"></div>
             </div>
+        </main>
 
-            <div class="tab-content" id="prayersTab">
-                <div class="prayers-list" id="prayersList">
-                    <!-- Orações serão adicionadas via JavaScript -->
-                </div>
-                <div class="timer-container">
-                    <div id="meditationTimer">00:00</div>
-                    <button onclick="toggleTimer()" id="timerButton">
-                        <i class="fas fa-play"></i> Iniciar Meditação
-                    </button>
-                </div>
-            </div>
-
-            <div class="tab-content" id="calendarTab">
-                <div class="calendar-events" id="calendarEvents">
-                    <!-- Eventos serão adicionados via JavaScript -->
-                </div>
-            </div>
-        </div>
-
-        <div class="chat-container" id="chat">
-            <!-- As mensagens serão inseridas aqui -->
-        </div>
-
-        <div class="loading" id="loading">
-            רוח - Buscando resposta...
-        </div>
-
-        <div class="input-container">
-            <input type="text" id="question" placeholder="Como posso ajudar?" aria-label="Digite sua pergunta" />
-            <button onclick="askQuestion()" aria-label="Enviar pergunta">Perguntar</button>
-        </div>
-    </main>
+        <footer class="footer">
+            <p>Ruah - Orientação e Sabedoria Espiritual © 2023</p>
+        </footer>
+    </div>
 
     <script src="/src/app.js"></script>
 </body>
