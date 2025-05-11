@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Conselheiro Espiritual - Obtenha orientação e conselhos baseados em sabedoria espiritual">
+    <title>Ruah - Orientação e Sabedoria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="./favicon-32x32.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./favicon-32x32.ico" type="image/x-icon">
+    <style>
+        /* Temas */
+        .theme-dark {
+            /* Fundo e texto */
+            --background: #141a2b;
+            /* Azul celestial profundo */
+            --text: #F0F8FF;
+            /* Branco azulado celestial */
+            --text-secondary: rgba(200, 220, 255, 0.8);
+            /* Azul claro suave */
+
+            /* Cores primárias (destaques) */
+            --primary: #5D8AA8;
+            /* Azul celestial moderado */
+            --primary-hover: #7EB6FF;
+            /* Azul céu claro */
+            --primary-active: #3A5FCD;
+            /* Azul mais intenso */
+
+            /* Cores secundárias */
+            --secondary: #1A2F5B;
+            /* Azul noite */
+            --secondary-dark: #0A1229;
+            /* Azul quase negro */
+        }
+
+        .theme-light {
+            /* Fundo e texto */
+            --background: #FFF8E7;
+            /* Branco dourado suave */
+            --text: #4A4A4A;
+            /* Texto escuro */
+            --text-secondary: rgba(74, 74, 74, 0.8);
+            /* Texto secundário */
+
+            /* Cores primárias */
+            --primary: #D4AF37;
+            /* Dourado */
+            --primary-hover: #FFD700;
+            /* Dourado brilhante */
+            --primary-active: #B8860B;
+            /* Dourado escuro */
+
+            /* Cores secundárias */
+            --secondary: #F5DEB3;
+            /* Bege dourado */
+            --secondary-dark: #DEB887;
+            /* Marrom dourado */
+        }
+
+        .theme-catholic {
+            --background: linear-gradient(135deg, #722F37 0%, #2C1810 100%);
+            --text: #F0F8FF;
+            --text-secondary: rgba(240, 248, 255, 0.8);
+            --primary: #9B2335;
+            --primary-hover: #C41E3A;
+            --primary-active: #800000;
+            --secondary: #4A1D1F;
+            --secondary-dark: #2C1810;
+        }
+
+        .theme-protestant {
+            --background: linear-gradient(135deg, #1B4D3E 0%, #0B2B26 100%);
+            --text: #F0F8FF;
+            --text-secondary: rgba(240, 248, 255, 0.8);
+            --primary: #2E8B57;
+            --primary-hover: #3CB371;
+            --primary-active: #006400;
+            --secondary: #1B4D3E;
+            --secondary-dark: #0B2B26;
+        }
+
+        :root {
+
+            /* Elementos de UI */
+            --message-bg: rgba(93, 138, 168, 0.2);
+            /* Azul celestial translúcido */
+            --input-bg: rgba(126, 182, 255, 0.1);
+            /* Azul céu muito suave */
+
+            /* Cores de ênfase espiritual */
+            --divine-light: #FFD700;
+            /* Dourado - glória divina */
+            --holy-spirit: #9370DB;
+            /* Roxo - espírito santo */
+            --angelic: #E6F0FF;
+            /* Azul angelical */
+
+            /* Constantes de design */
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+            background-image: linear-gradient(to bottom, var(--background), #1A2F5B);
+        }
+
+        .navbar {
+            background-color: var(--secondary);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            font-style: italic;
+            border-bottom: 1px solid var(--divine-light);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+            background-image: linear-gradient(to right, var(--secondary), var(--secondary-dark));
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-selector {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .theme-btn {
+            background: none;
+            border: none;
+            color: var(--text);
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.2);
+            color: var(--divine-light);
+        }
+
+        .theme-btn.active {
+            color: var(--divine-light);
+            text-shadow: 0 0 10px var(--divine-light);
+        }
+
+        .sacred-symbols {
+            display: flex;
+            gap: 2rem;
+            color: var(--divine-light);
+            opacity: 0.7;
+            font-size: 1.2rem;
+        }
+
+        /* Efeito de vitral */
+        .navbar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg,
+                    rgba(255, 255, 255, 0.1) 25%,
+                    transparent 25%,
+                    transparent 50%,
+                    rgba(255, 255, 255, 0.1) 50%,
+                    rgba(255, 255, 255, 0.1) 75%,
+                    transparent 75%,
+                    transparent);
+            background-size: 100px 100px;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .verse {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0.5rem 1rem;
+            color: var(--divine-light);
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .chat-container {
+            background-color: rgba(10, 18, 41, 0.7);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            min-height: 300px;
+            max-height: 500px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            box-shadow:
+                inset 0 0 10px rgba(0, 0, 0, 0.3),
+                0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(93, 138, 168, 0.3);
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            background-color: var(--message-bg);
+            opacity: 0;
+            animation: fadeIn 0.3s ease forwards;
+            word-wrap: break-word;
+            border-left: 3px solid var(--primary);
+        }        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes divineLight {
+            0% {
+                opacity: 0;
+                transform: scale(0.1) rotate(0deg);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.2) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2) rotate(360deg);
+            }
+        }
+
+        .divine-light {
+            position: fixed;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at center,
+                rgba(255, 215, 0, 0.8) 0%,
+                rgba(255, 215, 0, 0.4) 30%,
+                rgba(255, 215, 0, 0.2) 50%,
+                transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+            animation: divineLight 2s ease-out forwards;
+            filter: blur(20px);
+        }
+
+        .question {
+            background-color: rgba(126, 182, 255, 0.25);
+            color: var(--angelic);
+            margin-left: 2rem;
+            border-bottom-right-radius: 0;
+            border-left-color: var(--primary-hover);
+        }
+
+        .answer {
+            margin-right: 2rem;
+            border-top-left-radius: 0;
+            background-color: rgba(26, 47, 91, 0.5);
+            border-left-color: var(--holy-spirit);
+        }
+
+        .input-container {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: var(--border-radius);
+            background-color: var(--input-bg);
+            color: var(--text);
+            font-size: 1rem;
+            transition: var(--transition);
+            border: 1px solid rgba(93, 138, 168, 0.3);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(93, 138, 168, 0.3);
+            background-color: rgba(126, 182, 255, 0.15);
+        }
+
+        input::placeholder {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            background-color: var(--primary);
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            background-image: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            background-color: var(--primary-active);
+            transform: translateY(0);
+        }
+
+        .loading {
+            text-align: center;
+            color: var(--divine-light);
+            margin: 1rem 0;
+            display: none;
+            font-style: italic;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Scrollbar styling */
+        .chat-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .chat-container::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .chat-container::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Estilos para o painel de recursos */
+        .resources-panel {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--primary);
+        }
+
+        .resources-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tab-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--text);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Estilos para a busca de versículos */
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .theme-select {
+            flex: 1;
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            background: var(--input-bg);
+            color: var(--text);
+            border: 1px solid var(--primary);
+        }
+
+        .search-btn {
+            padding: 0.5rem 1rem;
+        }
+
+        .verses-results {
+            display: grid;
+            gap: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .verse-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--primary);
+        }
+
+        .verse-reference {
+            color: var(--primary);
+            font-style: italic;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        /* Estilos para orações */
+        .prayers-list {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .prayer-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--holy-spirit);
+        }
+
+        .timer-container {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: var(--border-radius);
+        }
+
+        #meditationTimer {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--divine-light);
+        }
+
+        /* Estilos para calendário */
+        .calendar-events {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .current-event {
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid var(--divine-light);
+            position: relative;
+            padding: 1.5rem;
+        }
+
+        .event-badge {
+            position: absolute;
+            top: -10px;
+            right: 1rem;
+            background: var(--divine-light);
+            color: var(--secondary-dark);
+            padding: 0.25rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .event-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--divine-light);
+            transition: transform 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateX(10px);
+        }
+
+        .event-date {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .event-date::before {
+            content: '\f073';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+        }
+
+        .event-readings {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .event-readings h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-readings ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .event-readings li {
+            padding: 0.25rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .event-readings li::before {
+            content: '\f02d';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .countdown-card {
+            background: linear-gradient(45deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .countdown-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .countdown-days {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--divine-light);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .countdown-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .countdown-event {
+            font-size: 1.2rem;
+            color: var(--divine-light);
+            font-weight: bold;
+        }
+
+        .events-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .events-timeline::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom,
+                    var(--primary) 0%,
+                    var(--divine-light) 50%,
+                    var(--primary) 100%);
+        }
+
+        @media (max-width: 600px) {
+            .input-container {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .verse {
+                font-size: 1rem;
+            }
+
+            .question {
+                margin-left: 1rem;
+            }
+
+            .answer {
+                margin-right: 1rem;
+            }
+
+            .resources-tabs {
+                flex-direction: column;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="theme-selector">
+            <button class="theme-btn" data-theme="dark" title="Tema Escuro">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="theme-btn" data-theme="light" title="Tema Luz">
+                <i class="fas fa-sun"></i>
+            </button>
+            <button class="theme-btn" data-theme="catholic" title="Tema Católico">
+                <i class="fas fa-cross"></i>
+            </button>
+            <button class="theme-btn" data-theme="protestant" title="Tema Protestante">
+                <i class="fas fa-church"></i>
+            </button>
+        </div>
+        <div class="verse" id="verse">Carregando versículo...</div>
+        <div class="sacred-symbols">
+            <i class="fas fa-dove"></i>
+            <i class="fas fa-cross"></i>
+            <i class="fas fa-bible"></i>
+        </div>
+    </header>
+    <main class="container">
+        <div class="resources-panel" id="resourcesPanel">
+            <div class="resources-tabs">
+                <button class="tab-btn active" data-tab="verses">Versículos</button>
+                <button class="tab-btn" data-tab="prayers">Orações</button>
+                <button class="tab-btn" data-tab="calendar">Calendário</button>
+            </div>
+
+            <div class="tab-content active" id="versesTab">
+                <div class="search-container">
+                    <select id="verseTheme" class="theme-select">
+                        <option value="">Selecione um tema...</option>
+                        <!-- Temas serão adicionados via JavaScript -->
+                    </select>
+                    <button onclick="searchVerses()" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="verses-results" id="versesResults"></div>
+            </div>
+
+            <div class="tab-content" id="prayersTab">
+                <div class="prayers-list" id="prayersList">
+                    <!-- Orações serão adicionadas via JavaScript -->
+                </div>
+                <div class="timer-container">
+                    <div id="meditationTimer">00:00</div>
+                    <button onclick="toggleTimer()" id="timerButton">
+                        <i class="fas fa-play"></i> Iniciar Meditação
+                    </button>
+                </div>
+            </div>
+
+            <div class="tab-content" id="calendarTab">
+                <div class="calendar-events" id="calendarEvents">
+                    <!-- Eventos serão adicionados via JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-container" id="chat">
+            <!-- As mensagens serão inseridas aqui -->
+        </div>
+
+        <div class="loading" id="loading">
+            רוח - Buscando resposta...
+        </div>
+
+        <div class="input-container">
+            <input type="text" id="question" placeholder="Como posso ajudar?" aria-label="Digite sua pergunta" />
+            <button onclick="askQuestion()" aria-label="Enviar pergunta">Perguntar</button>
+        </div>
+    </main>
+
+    <script src="/src/app.js"></script>
+</body>
+
+</html>
