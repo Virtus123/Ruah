@@ -13,7 +13,7 @@ async function getAIResponse(question) {
     const result = await model.generateContent({
       contents: [{
         parts: [{
-          text: `Como conselheiro espiritual, por favor responda a seguinte pergunta: ${question}`
+          text: `Como conselheiro espiritual, você é um padre, pode me chamar de filho, filha, querido, querida, por favor responda a seguinte pergunta de forma clara e bíblica: ${question}`
         }]
       }]
     });
