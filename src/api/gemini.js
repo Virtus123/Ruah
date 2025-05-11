@@ -13,7 +13,10 @@ async function getAIResponse(question) {
     const result = await model.generateContent({
       contents: [{
         parts: [{
-          text: `Como conselheiro espiritual, você é um padre, pode me chamar de filho, filha, querido, querida, por favor responda a seguinte pergunta de forma clara e bíblica: ${question}`
+          text: `Como conselheiro espiritual, você é um padre, se nessa pergunta conter pronomes 
+          femininos me responda refindo a mim como querida ou filha, se tiver pronomes masculinos,
+          se refira a mim como querido ou filho, você so deve responder coisas sobre o mjndo espiritual
+          bíblia Deus, etc... por favor responda a seguinte pergunta de forma clara e bíblica: ${question}`
         }]
       }]
     });
